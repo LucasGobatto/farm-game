@@ -7,7 +7,7 @@ class Map:
     self.surface = pygame.display.get_surface()
 
     self.visible_sprites = pygame.sprite.Group()
-    self.obstacles_sprites = pygame.sprite.Group()
+    self.obstacle_sprites = pygame.sprite.Group()
 
     self.__create_map__()
 
@@ -22,7 +22,8 @@ class Map:
         if (square == MapIcons.player):
           Player(position, [self.visible_sprites])
         if (square == MapIcons.water):
-          Water(position, [self.obstacles_sprites, self.visible_sprites])
+          Water(position, [self.obstacle_sprites, self.visible_sprites])
 
   def run(self):
     self.visible_sprites.draw(self.surface)
+    self.visible_sprites.update()

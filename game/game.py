@@ -5,7 +5,7 @@ from game.map import Map
 class Game():
   def __init__(self):
     pygame.display.init()
-    pygame.display.set_mode(size=(WIDTH, HEIGHT))
+    self.surface = pygame.display.set_mode(size=(WIDTH, HEIGHT))
     pygame.display.set_caption("MiniFarm")
 
     self.clock = pygame.time.Clock()
@@ -22,7 +22,9 @@ class Game():
         if event.type == pygame.QUIT:
           self.stop()
 
+      self.surface.fill(0)
       self.map.run()
+
       pygame.display.update()
       self.clock.tick(GAME_FPS)
   
