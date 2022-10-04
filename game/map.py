@@ -20,7 +20,7 @@ class Map:
         if (square == MapIcons.land):
           self.surface.fill(Color.green, (position, size))
         if (square == MapIcons.player):
-          Player(position, [self.visible_sprites])
+          Player(position, [self.visible_sprites], self.obstacle_sprites)
         if (square == MapIcons.water):
           Water(position, [self.obstacle_sprites, self.visible_sprites])
 
