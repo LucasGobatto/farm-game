@@ -1,6 +1,4 @@
-from shutil import move
 import pygame, math
-
 from game.utils import import_folder
 
 class Player(pygame.sprite.Sprite):
@@ -13,7 +11,7 @@ class Player(pygame.sprite.Sprite):
     self.animation_direction = "front"
     self.image = self.animation["stop"][self.animation_direction][self.frame_index]
     self.rect = self.image.get_rect(topleft = pos)
-    self.hitbox = self.rect.inflate(0, -5)
+    self.hitbox = self.rect.inflate(0, 0)
 
     self.direction = pygame.math.Vector2()
     self.speed = 3
@@ -76,19 +74,19 @@ class Player(pygame.sprite.Sprite):
     events = pygame.key.get_pressed()
     direction = { "x": 0, "y": 0 }
    
-    if events[pygame.K_UP]:
+    if events[pygame.K_UP] or events[pygame.K_w]:
       direction["y"] = movements["decrease"]
       self.animation_direction = "back"
     
-    if events[pygame.K_DOWN]:
+    if events[pygame.K_DOWN] or events[pygame.K_s]:
       direction["y"] = movements["increase"]
       self.animation_direction = "front"
 
-    if events[pygame.K_LEFT]:
+    if events[pygame.K_LEFT] or events[pygame.K_a]:
       direction["x"] = movements["decrease"]
       self.animation_direction = "left"
 
-    if events[pygame.K_RIGHT]:
+    if events[pygame.K_RIGHT] or events[pygame.K_d]:
       direction["x"] = movements["increase"]
       self.animation_direction = "right"
 
