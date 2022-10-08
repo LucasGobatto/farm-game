@@ -1,7 +1,7 @@
 GAME_FPS = 60
 WIDTH = 912
 HEIGHT = 728
-CHUNK = 64
+CHUNK = 48
 
 class Color:
   blue_dark = (0, 0, 255)

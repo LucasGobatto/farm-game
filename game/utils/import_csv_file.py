@@ -1,8 +1,9 @@
 from csv import reader
 
-def import_csv_file(path: str):
+def import_csv_file(file: str):
   terrain = []
-  with open(path) as file:
+  fullpath = f'./assets/csv/{file}'
+  with open(fullpath) as file:
     data = reader(file, delimiter=',')
     for row in data:
       terrain.append(list(row))
