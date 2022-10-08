@@ -10,7 +10,7 @@ class Game():
     pygame.display.set_caption("MiniFarm")
     pygame.font.init()
 
-    self.game_stats = GameStatsBuilder("MiniFarm", (10, 10))
+    self.game_stats = GameStatsBuilder()
     pygame.time.set_timer(pygame.USEREVENT + 1, FIVE_MINUTES)
     self.clock = pygame.time.Clock()
   
