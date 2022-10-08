@@ -1,7 +1,7 @@
 import pygame
 from game.camera import Camera
 from game.constants import *
-from game.objects import Player, Boundary, Tile, Rocks, Trees
+from game.objects import Player, Boundary, Tile
 from game.utils import import_csv_file
 
 class Map:
@@ -33,7 +33,10 @@ class Map:
 
           if (styles == "trees"):
             if (space == "0"):
-              Trees(pos, [self.visible_sprites, self.obstacle_sprites])
+                shrink_x =  -(CHUNK - 10) / 2
+                shrink_y = -(3* CHUNK - 22)
+                shrink = (int(shrink_x), int(shrink_y))
+                Tile(pos, [self.visible_sprites, self.obstacle_sprites], styles, shrink)
 
           elif (styles == "hero"):
             if (space == "13"):
@@ -42,13 +45,16 @@ class Map:
           elif (space != "-1"):
             if (styles == "boundary"):
               Boundary(pos, [self.obstacle_sprites])
+              continue
 
-            elif (styles == "rocks"):
-              Rocks(pos, [self.visible_sprites, self.obstacle_sprites], styles)
-
+            if (styles == "rocks"):
+              shrink = (int(-CHUNK / 2), int(-CHUNK / 2))
+              sprites = [self.visible_sprites, self.obstacle_sprites]
             else:
-              Tile(pos, [self.visible_sprites], styles)
+              sprites = [self.visible_sprites]
+              shrink = (0,0)
 
+            Tile(pos, sprites, styles, shrink)
 
   def run(self):
     self.visible_sprites.custom_draw(self.player)

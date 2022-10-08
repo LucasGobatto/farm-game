@@ -3,6 +3,7 @@ import pygame
 
 def import_folder(path: str) -> list[pygame.surface.Surface]:
   images: list[pygame.surfice.Surface] = []
+  print(path)
   for (_, __, files) in walk(path):
     for file in files:
       fullpath = f'{path}/{file}'

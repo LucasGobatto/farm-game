@@ -1,11 +1,12 @@
-from random import choice
 import pygame
-from game.utils import import_folder
+from game.get_assets import GetAssets
 
 class Tile(pygame.sprite.Sprite):
 
-  def __init__(self, pos, groups, type):
+  def __init__(self, pos: tuple[int, int], groups, type: str, shrink: tuple[int, int] = (0,0)):
     super().__init__(groups)
-    self.image = choice(import_folder(f"./assets/map/objects/{type}"))
+    getAssets = GetAssets()
+
+    self.image = getAssets.get(type)
     self.rect = self.image.get_rect(topleft = pos)
-    self.hitbox = self.rect.inflate((0, 0))
+    self.hitbox = self.rect.inflate(shrink)
