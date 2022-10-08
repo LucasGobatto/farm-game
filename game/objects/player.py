@@ -12,8 +12,7 @@ class Player(pygame.sprite.Sprite):
     self.animation_direction = "front"
     self.image = self.animation["stop"][self.animation_direction][self.frame_index]
     self.rect = self.image.get_rect(topleft = pos)
-    print(1 - (CHUNK / 2), 1 - CHUNK)
-    self.hitbox = self.rect.inflate((1- (CHUNK / 2), 2 - CHUNK * 2))
+    self.hitbox = self.rect.inflate((1 - (CHUNK / 2), 2 - CHUNK * 2))
 
     self.direction = pygame.math.Vector2()
     self.speed = 3

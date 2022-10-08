@@ -1,7 +1,7 @@
 import pygame
 from game.camera import Camera
 from game.constants import *
-from game.objects import Player, Boundary, Tile, Rocks
+from game.objects import Player, Boundary, Tile, Rocks, Trees
 from game.utils import import_csv_file
 
 class Map:
@@ -25,7 +25,6 @@ class Map:
       "water-rocks": import_csv_file("water-rocks.csv"),
       "hero": import_csv_file("hero.csv")
     }
-    obstacle_sprites = ["rocks"]
 
     for styles in layout.keys():
       for y, row in enumerate(layout[styles]):
@@ -34,20 +33,19 @@ class Map:
 
           if (styles == "trees"):
             if (space == "0"):
-              Tile(pos, [self.visible_sprites], styles)
+              Trees(pos, [self.visible_sprites, self.obstacle_sprites])
 
           elif (styles == "hero"):
             if (space == "13"):
               self.player = Player(pos, [self.visible_sprites], self.obstacle_sprites)
 
-
           elif (space != "-1"):
             if (styles == "boundary"):
               Boundary(pos, [self.obstacle_sprites])
 
-
-            elif (styles in obstacle_sprites):
+            elif (styles == "rocks"):
               Rocks(pos, [self.visible_sprites, self.obstacle_sprites], styles)
+
             else:
               Tile(pos, [self.visible_sprites], styles)
 
