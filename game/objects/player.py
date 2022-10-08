@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
   _animation_time = 0.1
   _speed = 3
   _direction = pygame.math.Vector2()
-  
+
   def __init__(self, pos, groups, obstacle_sprites):
     super().__init__(groups)
     self.import_image()
@@ -24,7 +24,7 @@ class Player(pygame.sprite.Sprite):
     self.obstacle_sprites = obstacle_sprites
 
   def import_image(self):
-    path = "./assets/player"
+    path = "./game/assets/player"
     self.animation: dict[str, dict[str, list[Surface]]] = {
       "stop": { "left": [], "right": [], "front": [], "back": []}, 
       "running": { "left": [], "right": [], "front": [], "back": []},
@@ -34,7 +34,7 @@ class Player(pygame.sprite.Sprite):
       for direction in self.animation[state].keys():
         fullpath = f"{path}/{state}/{direction}"
         self.animation[state][direction] = import_folder(fullpath)
-  
+
   def animate(self):
     if (self._is_running):
       state = "running"
@@ -80,20 +80,20 @@ class Player(pygame.sprite.Sprite):
 
     events = pygame.key.get_pressed()
     direction: dict[str, int] = { "x": 0, "y": 0 }
-   
-    if events[pygame.K_UP] or events[pygame.K_w]:
+ 
+    if events[pygame.K_w]:
       direction["y"] = movements["decrease"]
       self._animation_direction = "back"
     
-    if events[pygame.K_DOWN] or events[pygame.K_s]:
+    if events[pygame.K_s]:
       direction["y"] = movements["increase"]
       self._animation_direction = "front"
 
-    if events[pygame.K_LEFT] or events[pygame.K_a]:
+    if events[pygame.K_a]:
       direction["x"] = movements["decrease"]
       self._animation_direction = "left"
 
-    if events[pygame.K_RIGHT] or events[pygame.K_d]:
+    if events[pygame.K_d]:
       direction["x"] = movements["increase"]
       self._animation_direction = "right"
 

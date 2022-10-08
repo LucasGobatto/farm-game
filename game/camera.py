@@ -9,7 +9,7 @@ class Camera(pygame.sprite.Group):
     self.half_height = self.surface.get_size()[1] // 2
     self.offset = pygame.math.Vector2()
 
-    self.floor_surf = pygame.image.load("./assets/map/ground.png").convert()
+    self.floor_surf = pygame.image.load("./game/assets/map/ground.png").convert()
     self.floor_rect = self.floor_surf.get_rect(topleft=(0,0))
   
   def custom_draw(self, player):

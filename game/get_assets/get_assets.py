@@ -4,7 +4,7 @@ from .singleton import Singleton
 from game.utils import import_folder
 
 class GetAssets(metaclass=Singleton):
-  _base_root = "./assets/map/objects"
+  _base_root = "./game/assets/map/objects"
   _objects: dict[str, list] = {}
 
   def get(self, asset: str) -> pygame.surface.Surface:
