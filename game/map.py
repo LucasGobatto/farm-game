@@ -1,7 +1,7 @@
 import pygame
 from game.camera import Camera
 from game.constants import *
-from game.objects import Player, Boundary, Tile
+from game.objects import Player, Boundary, Tile, Rocks
 from game.utils import import_csv_file
 
 class Map:
@@ -19,7 +19,6 @@ class Map:
       "grass": import_csv_file("grass.csv"),
       "rocks": import_csv_file("rocks.csv"),
       "trees": import_csv_file("trees.csv"),
-      "grass": import_csv_file("grass.csv"),
       "flowers": import_csv_file("flowers.csv"),
       "arbory": import_csv_file("arbory.csv"),
       "water-grass": import_csv_file("water-grass.csv"),
@@ -48,7 +47,7 @@ class Map:
 
 
             elif (styles in obstacle_sprites):
-              Tile(pos, [self.visible_sprites, self.obstacle_sprites], styles)
+              Rocks(pos, [self.visible_sprites, self.obstacle_sprites], styles)
             else:
               Tile(pos, [self.visible_sprites], styles)
 

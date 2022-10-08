@@ -1,5 +1,6 @@
 import pygame, math
 from game.utils import import_folder
+from game.constants import CHUNK
 
 class Player(pygame.sprite.Sprite):
   def __init__(self, pos, groups, obstacle_sprites):
@@ -11,7 +12,8 @@ class Player(pygame.sprite.Sprite):
     self.animation_direction = "front"
     self.image = self.animation["stop"][self.animation_direction][self.frame_index]
     self.rect = self.image.get_rect(topleft = pos)
-    self.hitbox = self.rect.inflate(0, 0)
+    print(1 - (CHUNK / 2), 1 - CHUNK)
+    self.hitbox = self.rect.inflate((1- (CHUNK / 2), 2 - CHUNK * 2))
 
     self.direction = pygame.math.Vector2()
     self.speed = 3
@@ -20,7 +22,7 @@ class Player(pygame.sprite.Sprite):
 
   def import_image(self):
     path = "./assets/player"
-    self.animation = {
+    self.animation: dict[str, dict[str, list[pygame.surface.Surface]]] = {
       "stop": { "left": [], "right": [], "front": [], "back": []}, 
       "running": { "left": [], "right": [], "front": [], "back": []},
     }
@@ -59,11 +61,13 @@ class Player(pygame.sprite.Sprite):
     if self.direction.magnitude() != 0:
       self.direction = self.direction.normalize()
 
-    self.hitbox.x += self.direction.x * self.speed
+    self.hitbox.x += int(self.direction.x * self.speed)
     self.collision("horizontal")
-    self.hitbox.y += self.direction.y * self.speed
+    self.hitbox.y += int(self.direction.y * self.speed)
     self.collision("vertical")
-    self.rect.center = self.hitbox.center
+    
+    if (self.rect):
+      self.rect.center = self.hitbox.center
 
   def keyboard_input(self):
     movements = {

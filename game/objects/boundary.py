@@ -6,4 +6,4 @@ class Boundary(pygame.sprite.Sprite):
     super().__init__(groups)
     self.image = surface
     self.rect = self.image.get_rect(topleft = pos)
-    self.hitbox = self.rect.inflate((0, 0))
+    self.hitbox = self.rect.inflate((0, CHUNK / 2))
